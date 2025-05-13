@@ -1,8 +1,13 @@
-/** @type {import('jest').Config} */
 export default {
-  verbose: true,
   testEnvironment: 'node',
-  transform: {},
+  verbose: true,
+  transform: {
+    '^.+\\.m?js$': 'babel-jest'
+  },
+  extensionsToTreatAsEsm: ['.js', '.mjs'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1'
+  },
   collectCoverage: true,
   coverageReporters: ['text', 'lcov'],
   coverageThreshold: {
@@ -13,10 +18,5 @@ export default {
       statements: 80
     }
   },
-  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json'],
-  testMatch: [
-    '**/tests/**/*.test.[jt]s?(x)',
-    '**/tests/**/*.spec.[jt]s?(x)'
-  ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js']
 };
