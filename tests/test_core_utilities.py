@@ -7,7 +7,13 @@ fundamental system components work correctly.
 """
 
 import pytest
-from typing import Any
+from typing import Any, Callable
+
+from tests import (
+    safe_test_wrapper, 
+    setup_test_environment, 
+    teardown_test_environment
+)
 
 def test_safe_test_wrapper():
     """
@@ -53,5 +59,10 @@ def test_type_safety():
     
     assert strict_type_function(42) == "42"
     
+    def unsafe_function(value: Any) -> str:
+        if not isinstance(value, int):
+            raise TypeError("Input must be an integer")
+        return str(value)
+    
     with pytest.raises(TypeError):
-        strict_type_function("not an integer")  # type: ignore
+        unsafe_function("not an integer")  # type: ignore
