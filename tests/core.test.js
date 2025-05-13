@@ -1,12 +1,20 @@
 // Core Module Test Suite
 
-// Basic test to verify Jest setup
+// Utility function for testing
+export function safeAdd(a, b) {
+  if (typeof a !== 'number' || typeof b !== 'number') {
+    throw new Error('Inputs must be numbers');
+  }
+  return a + b;
+}
+
+// Test suite
 describe('Core Module Test Suite', () => {
-  test('Jest configuration is working', () => {
+  test('Basic boolean assertion', () => {
     expect(true).toBe(true);
   });
 
-  test('Basic mathematical operations', () => {
+  test('Mathematical operations', () => {
     expect(2 + 2).toBe(4);
     expect(5 - 3).toBe(2);
     expect(6 * 7).toBe(42);
@@ -17,17 +25,7 @@ describe('Core Module Test Suite', () => {
     expect(testArray.length).toBe(3);
     expect(testArray).toContain(2);
   });
-});
 
-// Example utility function test
-function safeAdd(a, b) {
-  if (typeof a !== 'number' || typeof b !== 'number') {
-    throw new Error('Inputs must be numbers');
-  }
-  return a + b;
-}
-
-describe('Utility Function Tests', () => {
   test('safeAdd function with valid inputs', () => {
     expect(safeAdd(5, 3)).toBe(8);
   });
