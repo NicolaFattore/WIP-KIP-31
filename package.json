@@ -2,23 +2,32 @@
   "name": "kip-31-core",
   "version": "1.0.0",
   "description": "Core testing framework for KIP-31 project",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx jest",
-    "test:watch": "npx jest --watch",
-    "test:coverage": "npx jest --coverage"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "keywords": ["testing", "jest", "kip-31"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0",
-    "@types/jest": "^29.5.12"
+    "@types/jest": "^29.5.12",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "babel-jest": "^29.7.0"
   },
   "jest": {
     "testEnvironment": "node",
     "verbose": true,
+    "transform": {
+      "^.+\\.m?js$": "babel-jest"
+    },
+    "extensionsToTreatAsEsm": [".js", ".mjs"],
     "collectCoverage": true,
     "coverageReporters": ["text", "lcov"],
     "coverageThreshold": {
@@ -29,5 +38,14 @@
         "statements": 80
       }
     }
+  },
+  "babel": {
+    "presets": [
+      ["@babel/preset-env", {
+        "targets": {
+          "node": "current"
+        }
+      }]
+    ]
   }
 }
