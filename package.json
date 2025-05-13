@@ -1,0 +1,15 @@
+{
+  "name": "kip-31-core",
+  "version": "1.0.0",
+  "description": "Core testing framework for KIP-31 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": ["testing", "jest", "kip-31"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}
